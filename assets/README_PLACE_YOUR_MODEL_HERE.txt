@@ -1,0 +1,1 @@
+Coloca aquí emotion-ferplus-8.onnx (FER+ opset 8). El código lo cargará desde assets/emotion-ferplus-8.onnx

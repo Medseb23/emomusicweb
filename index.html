@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Emo Music (Web)</title>
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 0; background: #0b1020; color: #e8f0ff; }
+      header { padding: 16px 20px; border-bottom: 1px solid #1a2240; display: flex; gap: 12px; align-items: center; }
+      main { padding: 20px; display: grid; gap: 16px; max-width: 1100px; margin: 0 auto; }
+      .row { display: flex; gap: 16px; flex-wrap: wrap; }
+      video, canvas { background: #000; border-radius: 12px; }
+      .card { background: #0f1630; border: 1px solid #1a2240; border-radius: 12px; padding: 16px; }
+      .btn { appearance: none; background: #365cff; color: white; border: none; padding: 10px 16px; border-radius: 10px; cursor: pointer; font-weight: 600;}
+      .btn:disabled { opacity: .6; cursor: not-allowed; }
+      .tag { background: #13204d; padding: 4px 8px; border-radius: 999px; font-size: 12px; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <button id="startBtn" class="btn">Iniciar (cámara + audio)</button>
+      <div id="status" class="tag">Listo</div>
+    </header>
+    <main>
+      <div class="row">
+        <div class="card">
+          <video id="video" playsinline muted width="480" height="360"></video>
+        </div>
+        <div class="card">
+          <canvas id="debug" width="480" height="360"></canvas>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>Emoción: <b id="emotion">—</b> <span id="confidence" class="tag mono">—</span></div>
+        <div>Estado musical: <b id="state">—</b></div>
+      </div>
+
+      <div class="card">
+        <div>Modelo: <span class="mono">assets/emotion-ferplus-8.onnx</span></div>
+        <div>Backends ORT Web: WebGPU/WebGL/CPU (auto)</div>
+        <div>Detector: MediaPipe FaceDetector (Tasks Web)</div>
+      </div>
+    </main>
+
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
