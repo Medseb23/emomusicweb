@@ -1,4 +1,3 @@
-cat > src/face.js <<'EOF'
 import {
   FaceLandmarker,
   FilesetResolver
@@ -62,4 +61,3 @@ export function detectFace(detector, video, ts) {
     height : Math.round((maxY - minY) * h)
   };
 }
-EOF
