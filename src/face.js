@@ -1,4 +1,4 @@
-// src/face.js
+cat > src/face.js <<'EOF'
 import {
   FaceLandmarker,
   FilesetResolver
@@ -42,10 +42,17 @@ export function detectFace(detector, video, ts) {
   // Bounding box a partir de landmarks (con 10% de margen)
   const pts = res.faceLandmarks[0];
   let minX = 1, minY = 1, maxX = 0, maxY = 0;
-  for (const p of pts) { if(p.x<minX)minX=p.x; if(p.y<minY)minY=p.y; if(p.x>maxX)maxX=p.x; if(p.y>maxY)maxY=p.y; }
+  for (const p of pts) {
+    if (p.x < minX) minX = p.x;
+    if (p.y < minY) minY = p.y;
+    if (p.x > maxX) maxX = p.x;
+    if (p.y > maxY) maxY = p.y;
+  }
   const pad = 0.10;
-  minX = Math.max(0, minX - pad); minY = Math.max(0, minY - pad);
-  maxX = Math.min(1, maxX + pad); maxY = Math.min(1, maxY + pad);
+  minX = Math.max(0, minX - pad);
+  minY = Math.max(0, minY - pad);
+  maxX = Math.min(1, maxX + pad);
+  maxY = Math.min(1, maxY + pad);
 
   const w = video.videoWidth, h = video.videoHeight;
   return {
@@ -55,3 +62,4 @@ export function detectFace(detector, video, ts) {
     height : Math.round((maxY - minY) * h)
   };
 }
+EOF
